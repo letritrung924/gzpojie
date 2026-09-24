@@ -1,0 +1,59 @@
+# gzpojie.com - Apache / shared hosting .htaccess
+# Forces .html extensions and prevents index.html fallback for known pages.
+
+# 1. Default charset & compression
+AddDefaultCharset UTF-8
+AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+
+# 2. Cache-Control headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm|css|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(svg|png|jpg|jpeg|gif|ico|webp)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+# 3. Custom error pages
+ErrorDocument 404 /404.html
+
+# 4. Force .html extension for clean URLs (most shared hostings)
+#    /contact -> /contact.html (only if /contact.html exists)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # If the URL doesn't end with .html and a corresponding .html file exists, redirect
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^\.]+)$ $1.html [L]
+
+  # Direct access to contact.html -> no rewrite needed, served as-is
+  RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$ [NC]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^\.]+)$ $1.html [L]
+</IfModule>
+
+# 5. SPA-style fallback safety: if request would match index.html fallback but URL is a known page-name, send 404
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/index\.html$
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteCond %{REQUEST_URI} !^/404\.html$
+  RewriteCond %{REQUEST_URI} !^/robots\.txt$
+  RewriteCond %{REQUEST_URI} !^/sitemap\.xml$
+  RewriteCond %{REQUEST_URI} !^/app-ads\.txt$
+  RewriteCond %{REQUEST_URI} !^/css/
+  RewriteCond %{REQUEST_URI} !^/js/
+  RewriteCond %{REQUEST_URI} !^/images/
+  RewriteRule ^(.*)$ /404.html [L,R=302]
+</IfModule>
+
+# 6. Pretty directory listing disabled
+Options -Indexes
+
+# 7. HTTPS redirect (uncomment in production)
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}/$1 [R=301,L]

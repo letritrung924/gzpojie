@@ -1,0 +1,16 @@
+# Netlify-style _redirects
+# Force .html extension for known pages so contact (without .html) routes to contact.html.
+
+/contact    /contact.html    301
+/services   /services.html   301
+/advantages /advantages.html 301
+/news       /news.html       301
+/privacy    /privacy.html    301
+/terms      /terms.html      301
+/app-ads.txt /app-ads.txt    200
+/css/*      /css/:s         200
+/js/*       /js/:s          200
+/images/*   /images/:s      200
+
+# SPA-style fallback: never serve index.html for arbitrary paths
+/* /404.html 404

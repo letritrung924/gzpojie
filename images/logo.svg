@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" width="220" height="56" role="img" aria-label="gzpojie.com logo">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#3a8dff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 4)">
+    <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#lg)"/>
+    <g transform="translate(24 24)" stroke="#06080f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle r="14" stroke-opacity="0.4"/>
+      <circle r="9"/>
+      <line x1="-14" y1="0" x2="-18" y2="0"/>
+      <line x1="14" y1="0" x2="18" y2="0"/>
+      <line x1="0" y1="-14" x2="0" y2="-18"/>
+      <line x1="0" y1="14" x2="0" y2="18"/>
+      <line x1="-9" y1="-9" x2="-12" y2="-12"/>
+      <line x1="9" y1="-9" x2="12" y2="-12"/>
+      <line x1="-9" y1="9" x2="-12" y2="12"/>
+      <line x1="9" y1="9" x2="12" y2="12"/>
+    </g>
+    <circle cx="38" cy="10" r="3" fill="#00ff9d"/>
+  </g>
+  <g transform="translate(64 14)" font-family="'Space Grotesk', 'Inter', sans-serif" font-weight="700" fill="#e6edf7">
+    <text x="0" y="20" font-size="20" letter-spacing="-0.5">gzpojie<tspan fill="#00f0ff">.</tspan>com</text>
+    <text x="0" y="38" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="2" fill="#94a3b8" font-weight="500">TECH · PRIVACY · DESIGN</text>
+  </g>
+</svg>
